@@ -11,15 +11,12 @@ const fastify = require('fastify')({
 });
 
 fastify.get('/', async (request, reply) => {
-  reply.send('hello world');
+  reply.redirect('https://github.com/kslr/bearychat-giphy');
 });
 
 fastify.post('/', async (request, reply) => {
   if (request.body.token === process.env.BEARTCHAT_TOKEN) {
-    let keyword = _.split(request.body.text, ' ')[1];
-    if (_.isUndefined(keyword)) {
-      reply.send(createError(400));
-    }
+    let keyword = _.replace(request.body.text, 'gify ', '');
 
     keyword = await google.translate({ text: keyword, to: 'en' })
       .then(response => response.result[0])
