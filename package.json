@@ -1,0 +1,32 @@
+{
+  "name": "bearychat-giphy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kslr/bearychat-giphy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kslr/bearychat-giphy/issues"
+  },
+  "homepage": "https://github.com/kslr/bearychat-giphy#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "fastify": "^1.12.1",
+    "giphy-js-sdk-core": "^1.0.6",
+    "http-errors": "^1.7.1",
+    "lodash": "^4.17.11",
+    "translation.js": "^0.7.5"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
