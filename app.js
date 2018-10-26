@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const _ = require('lodash');
-const createError = require('http-errors');
 const { youdao, baidu, google } = require('translation.js');
 const GphApiClient = require('giphy-js-sdk-core');
 
@@ -18,11 +17,13 @@ fastify.post('/', async (request, reply) => {
   if (request.body.token === process.env.BEARTCHAT_TOKEN) {
     let keyword = _.replace(request.body.text, 'gify ', '');
 
-    keyword = await google.translate({ text: keyword, to: 'en' })
-      .then(response => response.result[0])
-      .catch(err => request.log.error(err));
+    if (/[\u4e00-\u9FA5]+/.test(keyword)) {
+      keyword = await google.translate({ text: keyword, to: 'en' })
+        .then(response => response.result[0])
+        .catch(err => request.log.error(err));
+    }
 
-    const gif = await client.search('gifs', { q: keyword, limit: 1 })
+    const gif = await client.search('gifs', { q: keyword, offset: _.random(0, 24) })
       .then(response => response.data[0].images.fixed_height.url)
       .catch(err => request.log.error(err));
 
